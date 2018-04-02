@@ -43,7 +43,21 @@ class SignupForm extends Model
                 'message' => Yii::t('frontend', 'This username has already been taken.')
             ],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            [
+                ['username'],
 
+                'match',
+                'pattern' => '/^\d+$/',
+                'not' => true,
+                'message' => Yii::t('frontend', 'Username cannot exclusively consist of digits')
+            ],
+            [
+                ['username'],
+
+                'match',
+                'pattern' => '/^[a-zA-Z\d]+$/',
+                'message' => Yii::t('frontend', 'Please, use only English letters and digits'),
+            ],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
